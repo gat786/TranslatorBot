@@ -21,3 +21,7 @@ You will also need to add your Microsoft Azure Translation Cognitive Services ke
 The working of app is as follows
 
 ![Working gif of the project](https://res.cloudinary.com/dtldj8hpa/video/upload/v1574606694/projects/TranslateBot.gif)
+
+Or you can directly add the bot which i have kept running on heroku by clicking on this link and add it to the required server!
+
+https://discordapp.com/oauth2/authorize?client_id=645821077901148203&scope=bot&permissions=1074203744
