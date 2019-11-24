@@ -11,11 +11,11 @@ client = discord.Client()
 
 requesting_user = ""
 
-# England Flag = english
+# United States Flag = english
 # Indian Flag = Hindi
-# Mexico Flag = Spanish
+# Spanish Flag = Spanish
 # German Flag = German
-# France Flag = French
+# French Flag = French
 
 def get_country(flag):
     with open("required_data.json", "r") as datafile:
@@ -40,9 +40,9 @@ async def on_reaction_add(reaction, user):
             language = languages.German
         elif country_name["name"]["common"] == "India":
             language = languages.Hindi
-        elif country_name["name"]["common"] == "United Kingdom":
+        elif country_name["name"]["common"] == "United States":
             language = languages.English
-        elif country_name["name"]["common"] == "Mexico":
+        elif country_name["name"]["common"] == "Spain":
             language = languages.Spanish
         elif country_name["name"]["common"] == "Russia":
             language = languages.Russian
@@ -79,11 +79,11 @@ async def on_reaction_add(reaction, user):
 @client.event
 async def on_message(message):
     if message.content == "!help":
-        await message.channel.send("To translate a message simply 'react' to it with a flag emoji. "
+        await message.channel.send("To translate a message simply react to it with a flag emoji. "
                                    "List of supported languages and their flags: \n"
-                                   ":flag_gb: British English | gb\n"
+                                   ":flag_us: English | gb\n"
                                    ":flag_in: Hindi | in\n"
-                                   ":flag_mx: Mexican Spanish | mx\n"
+                                   ":flag_es: Spanish | mx\n"
                                    ":flag_de: German | de\n"
                                    ":flag_mf: French | mf\n"
                                    ":flag_pt: Portuguese | pt\n"
