@@ -1,0 +1,4 @@
+{
+    "bot":"YOUR-DISCORD-BOT-TOKEN",
+    "cognitive_key_1": "YOUR-AZURE-TRANSLATE-API-KEY"
+}
