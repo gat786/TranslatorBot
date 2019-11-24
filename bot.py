@@ -76,7 +76,7 @@ async def on_reaction_add(reaction, user):
                     translated_text = response[0]["translations"][0]["text"]
                     if user.dm_channel is None:
                         await user.create_dm()
-                    await user.dm_channel.send("Your translated message is of " +  text + " is :\n" + translated_text)
+                    await user.dm_channel.send("Your translated message is :\n" + translated_text)
                 else:
                     print(response)
                     await reaction.message.channel.send("Translation Failed")
