@@ -81,14 +81,14 @@ async def on_message(message):
     if message.content == "!help":
         await message.channel.send("To translate a message simply react to it with a flag emoji. "
                                    "List of supported languages and their flags: \n"
-                                   ":flag_us: English | gb\n"
-                                   ":flag_in: Hindi | in\n"
-                                   ":flag_es: Spanish | mx\n"
-                                   ":flag_de: German | de\n"
-                                   ":flag_mf: French | mf\n"
-                                   ":flag_pt: Portuguese | pt\n"
-                                   ":flag_ru: Russia | ru\n"
-                                   ":flag_jp: Japanese | jp\n"
+                                   ":flag_us: English | US\n"
+                                   ":flag_in: Hindi | IN\n"
+                                   ":flag_es: Spanish | ES\n"
+                                   ":flag_de: German | DE\n"
+                                   ":flag_mf: French | MF\n"
+                                   ":flag_pt: Portuguese | PT\n"
+                                   ":flag_ru: Russia | RU\n"
+                                   ":flag_jp: Japanese | JP\n"
                                    "More languages will be supported in future releases.")
     return
 
