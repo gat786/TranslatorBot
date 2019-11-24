@@ -2,10 +2,9 @@ import discord
 import json
 import TranslatorApi
 import supported_languages
+import os
 
-
-with open("keys.json", 'r') as file:
-    bot_token = json.loads(file.read())["bot"]
+bot_token = os.environ["bot_token"]
 
 client = discord.Client()
 
@@ -16,6 +15,18 @@ requesting_user = ""
 # Spanish Flag = Spanish
 # German Flag = German
 # French Flag = French
+
+help_message = "To translate a message simply react to it with a flag emoji." \
+               "List of supported languages and their flags: \n"\
+               ":flag_us: English | US\n"\
+               ":flag_in: Hindi | IN\n"\
+               ":flag_es: Spanish | ES\n"\
+               ":flag_de: German | DE\n"\
+               ":flag_mf: French | MF\n"\
+               ":flag_pt: Portuguese | PT\n"\
+               ":flag_ru: Russia | RU\n"\
+               ":flag_jp: Japanese | JP\n"\
+               "More languages will be supported in future releases."
 
 def get_country(flag):
     with open("required_data.json", "r") as datafile:
@@ -29,6 +40,7 @@ def get_country(flag):
 @client.event
 async def on_reaction_add(reaction, user):
     print("You added a reaction"+reaction.emoji)
+
     received_emoji = reaction.emoji
     country_name = get_country(received_emoji)
     print(country_name)
@@ -62,7 +74,10 @@ async def on_reaction_add(reaction, user):
             if response[0]["detectedLanguage"] is not None:
                 if response[0]["translations"] is not None:
                     translated_text = response[0]["translations"][0]["text"]
-                    await reaction.message.channel.send(translated_text)
+                    if user.dm_channel is None:
+                        await user.create_dm()
+                    await user.dm_channel.send(translated_text)
+                    # await reaction.message.channel.send(translated_text)
                 else:
                     print(response)
                     await reaction.message.channel.send("Translation Failed")
@@ -78,18 +93,17 @@ async def on_reaction_add(reaction, user):
 
 @client.event
 async def on_message(message):
-    if message.content == "!help":
-        await message.channel.send("To translate a message simply react to it with a flag emoji. "
-                                   "List of supported languages and their flags: \n"
-                                   ":flag_us: English | US\n"
-                                   ":flag_in: Hindi | IN\n"
-                                   ":flag_es: Spanish | ES\n"
-                                   ":flag_de: German | DE\n"
-                                   ":flag_mf: French | MF\n"
-                                   ":flag_pt: Portuguese | PT\n"
-                                   ":flag_ru: Russia | RU\n"
-                                   ":flag_jp: Japanese | JP\n"
-                                   "More languages will be supported in future releases.")
+    content = message.content
+    list_content = str(content).split()
+    if len(list_content) == 2 and list_content[1] == "help":
+        mentions = message.raw_mentions
+        if mentions is not None:
+            for mention in mentions:
+                if mention == client.user.id:
+                    if message.author.dm_channel is None:
+                        await message.author.create_dm()
+                    await message.author.dm_channel.send(help_message)
+
     return
 
 
