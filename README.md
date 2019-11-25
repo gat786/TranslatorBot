@@ -8,7 +8,7 @@ Using this bot is pretty straightforward. Simply react to the message that you w
 
 The languages currently supported by this bot are: 
 
-![Help function of bot](https://res.cloudinary.com/dtldj8hpa/image/upload/v1574605347/projects/bot-help.jpg)
+![Help function of bot](https://res.cloudinary.com/dtldj8hpa/image/upload/v1574623172/projects/bot-help.jpg)
 
 This project has a few dependencies: discord-py, heroku and requests.
 
