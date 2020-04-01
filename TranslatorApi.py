@@ -26,8 +26,9 @@ class TranslatorApi:
 
     def translate(self, text, lang_to):
         code = self.get_lang_code(lang_to)
+        
         response = requests.post(self.translate_url+code, str(text).encode('utf-8'), headers=self.headers)
-        print(response.text)
+        
         return response
 
     def get_lang_code(self,language):

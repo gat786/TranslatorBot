@@ -1,2 +1,2 @@
--e git+https://github.com/Rapptz/discord.py@v1.2.5#egg=Rewrite
+discord.py
 requests
